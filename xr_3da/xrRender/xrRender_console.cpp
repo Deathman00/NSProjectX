@@ -15,95 +15,92 @@ xr_token							qpreset_token[] = {
 	{ 0,							0											}
 };
 
-u32 ps_aa = 1;
-xr_token aa_token[] = {
-//	{"off", 0},
-	{"edge_sampling", 1},
-	{"dlaa", 2},
-	{"fxaa", 3},
-	{0, 0} };
+u32		ps_aa = 1;
+xr_token							aa_token[] = {
+	{ "st_opt_edge_sampling",		1											},
+	{ "st_opt_dlaa",				2											},
+	{ "st_opt_fxaa",				3											},
+	{ 0,							0											} 
+};
 
-u32 ps_aa_quality = 2;
+u32		ps_aa_quality = 2;
 xr_token aa_quality_token[] = {
-	//{"off", 0},
-	{"low", 1},
-	{"default", 2},
-	{"high", 3},
-	{"ultra", 4},
-	{0, 0} };
+	{ "st_opt_low",					1											},
+	{ "st_opt_medium",				2											},
+	{ "st_opt_high",				3											},
+	{ "st_opt_ultra",				4											},
+	{ 0,							0											} 
+};
 
-u32 ps_ao = 2;
+u32		ps_ao = 2;
 xr_token ao_token[] = {
-	{"off", 0},
-	{"ssao", 1},
-	{"hdao", 2},
-	{"hbao", 3},
-	{"gtao", 4},
-	{0, 0} };
+	{ "st_opt_off",						0											},
+	{ "st_opt_ssao",				1											},
+	{ "st_opt_hdao",				2											},
+	{ "st_opt_hbao",				3											},
+	{ "st_opt_gtao",				4											},
+	{ 0,							0											} 
+};
 
-u32 ps_ao_quality = 2;
+u32		ps_ao_quality = 2;
 xr_token ao_quality_token[] = {
-	{"low", 1},
-	{"default", 2},
-	{"high", 3},
-	{"ultra", 4},
-	{0, 0} };
+	{ "st_opt_low",					1											},
+	{ "st_opt_medium",				2											},
+	{ "st_opt_high",				3											},
+	{ "st_opt_ultra",				4											},
+	{ 0,							0											} 
+};
 
-u32 ps_sun_quality = 1;
+u32		ps_sun_quality = 1;
 xr_token sun_quality_token[] = {
-	{"low",		0},
-	{"default", 1},
-	{"high",	2},
-	{"extreme", 3},
-	{"ultra",	4},
-	{0, 0} };
+	{ "st_opt_low",					0											},
+	{ "st_opt_medium",				1											},
+	{ "st_opt_high",				2											},
+	{ "st_opt_extreme",				3											},
+	{ "st_opt_ultra",				4											},
+	{ 0,							0											} 
+};
 
-u32 ps_shadow_quality = 1;
+u32		ps_shadow_quality = 1;
 xr_token shadow_quality_token[] = {
-	{"low",		1},
-	{"default", 2},
-	{"high",	3},
-	{"extreme", 4},
-	{"ultra",	5},
-	{0, 0} };
+	{ "st_opt_low",					1											},
+	{ "st_opt_medium",				2											},
+	{ "st_opt_high",				3											},
+	{ "st_opt_extreme",				4											},
+	{ "st_opt_ultra",				5											},
+	{ 0,							0											} 
+};
 
-/*
-u32 ps_blur_type = 0;
-xr_token blur_type_token[] = {
-	{"off", 0},
-	{"mblur", 1},
-	{"dof", 2},
-	{0, 0} };
-	*/
-
-u32 ps_shadow_filter_quality = 0;
+u32		ps_shadow_filter_quality = 0;
 xr_token shadow_filter_quality_token[] = {
-	{"low", 0},
-	{"default", 1},
-	{"high", 2},
-	{0, 0} };
+	{ "st_opt_low",					0											},
+	{ "st_opt_medium",				1											},
+	{ "st_opt_high",				2											},
+	{ 0,							0											} 
+};
 
-u32 ps_debug_frame_layers = 0;
+u32		ps_debug_frame_layers = 0;
 xr_token debug_frame_layers_token[] = {
-	{"off", 0},
-	{"hemi", 1},
-	{"occ", 2},
-	{"ao", 3},
-	{"diffuse", 4},
-	{"light", 5},
-	{"normal", 6},
-	{"color", 7},
-	{"specular", 8},
-	{"position", 9},
-	{"lightmap", 10},
-	{0, 0} };
+	{ "off",						0											},
+	{ "hemi",						1											},
+	{ "occ",						2											},
+	{ "ao",							3											},
+	{ "diffuse",					4											},
+	{ "light",						5											},
+	{ "normal",						6											},
+	{ "color",						7											},
+	{ "specular",					8											},
+	{ "position",					9											},
+	{ 0,							0											}
+};
 
-u32 ps_bump_mode = 2;
+u32		ps_bump_mode = 2;
 xr_token bump_mode_token[] = {
-	{"normal_mapping", 1},
-	{"parallax_mapping", 2},
-	{"steep_parallax_mapping", 3},
-	{0, 0} };
+	{ "st_opt_normal_mapping",		1											},
+	{ "st_opt_parallax_mapping",	2											},
+	{ "st_opt_steep_parallax_mapping",3											},
+	{ 0,							0											}
+};
 
 u32			ps_r_sun_shafts = 2;
 xr_token							qsun_shafts_token[] = {
@@ -499,15 +496,12 @@ public:
 	}
 
 };
-//-----------------------------------------------------------------------
+
 void		xrRender_initconsole()
 {
-
-		//msolopov0 CMDS		 
 	CMD3(CCC_Mask, "r2_soft_water", &ps_r2_ls_flags, R2FLAG_SOFT_WATER);
 	CMD3(CCC_Mask, "r2_soft_particles", &ps_r2_ls_flags, R2FLAG_SOFT_PARTICLES);
 	CMD3(CCC_Mask, "r2_soft_shadows", &ps_r2_ls_flags, R2FLAG_SOFT_SHADOWS);
-	CMD3(CCC_Mask, "r2_gloss_rgb", &ps_r2_ls_flags, R2FLAG_GLOSS_RGB);
 
 	CMD3(CCC_Token, "r2_aa_type", &ps_aa, aa_token);
 	CMD3(CCC_Token, "r2_aa_quality", &ps_aa_quality, aa_quality_token);
@@ -517,35 +511,34 @@ void		xrRender_initconsole()
 	CMD3(CCC_Token, "r2_ao_quality", &ps_ao_quality, ao_quality_token);
 	CMD3(CCC_Mask,  "r2_ao_blur", &ps_r2_ls_flags_ext, R2FLAGEXT_AO_BLUR);
 
-	CMD3(CCC_Token, "r2_sun_quality", &ps_sun_quality, sun_quality_token);
-	CMD3(CCC_Token, "r2_shadow_quality", &ps_shadow_quality, shadow_quality_token);
-
-//	CMD3(CCC_Token, "r2_blur_type", &ps_blur_type, blur_type_token);
-
-	CMD3(CCC_Mask, "r2_dof_enabled", &ps_r2_ls_flags, R2FLAG_DOF);
-	CMD3(CCC_Mask, "r2_mblur_enabled", &ps_r2_ls_flags, R2FLAG_MBLUR);
-
-	CMD3(CCC_Token, "r2_bump_mode", &ps_bump_mode, bump_mode_token);
-
-	CMD3(CCC_Mask, "r2_wet_surfaces", &ps_r2_ls_flags, R2FLAG_WET_SURFACES);
 	CMD3(CCC_Mask, "r2_vignette", &ps_r2_ls_flags, R2FLAG_VIGNETTE);
 	CMD3(CCC_Mask, "r2_chromatic_abberation", &ps_r2_ls_flags, R2FLAG_CHROMATIC_ABBERATION);
 	CMD3(CCC_Mask, "r2_bloom", &ps_r2_ls_flags, R2FLAG_BLOOM);
 
 	Fvector	tw_min, tw_max;
 	tw_min.set(-10000, -10000, 0);	tw_max.set(10000, 10000, 10000);
-	CMD4(CCC_Dof, "r2_dof", &ps_r2_dof, tw_min, tw_max);
-	CMD4(CCC_DofNear, "r2_dof_near", &ps_r2_dof.x, tw_min.x, tw_max.x);
-	CMD4(CCC_DofFocus, "r2_dof_focus", &ps_r2_dof.y, tw_min.y, tw_max.y);
-	CMD4(CCC_DofFar, "r2_dof_far", &ps_r2_dof.z, tw_min.z, tw_max.z);
+	CMD4(CCC_Dof,		"r2_dof",			&ps_r2_dof,		tw_min,		tw_max);
+	CMD4(CCC_DofNear,	"r2_dof_near",		&ps_r2_dof.x,	tw_min.x,	tw_max.x);
+	CMD4(CCC_DofFocus,	"r2_dof_focus",		&ps_r2_dof.y,	tw_min.y,	tw_max.y);
+	CMD4(CCC_DofFar,	"r2_dof_far",		&ps_r2_dof.z,	tw_min.z,	tw_max.z);
+	CMD4(CCC_Float,		"r2_dof_kernel",	&ps_r2_dof_kernel_size,		.0f, 10.f);
+	CMD4(CCC_Float,		"r2_dof_sky",		&ps_r2_dof_sky, -10000.f, 10000.f);
+	CMD3(CCC_Mask,		"r2_dof_enabled",	&ps_r2_ls_flags, R2FLAG_DOF);
 
-	CMD4(CCC_Float, "r2_dof_kernel", &ps_r2_dof_kernel_size, .0f, 10.f);
-	CMD4(CCC_Float, "r2_dof_sky", &ps_r2_dof_sky, -10000.f, 10000.f);
-	//CMD3(CCC_Mask, "r2_dof_enable", &ps_r2_ls_flags, R2FLAG_DOF);
+	CMD3(CCC_Mask, "r2_mblur_enabled", &ps_r2_ls_flags, R2FLAG_MBLUR);
 
 	CMD3(CCC_Token, "r2_sun_shafts", &ps_r_sun_shafts, qsun_shafts_token);
+	CMD3(CCC_Token, "r2_sun_quality", &ps_sun_quality, sun_quality_token);
+	CMD3(CCC_Token, "r2_shadow_quality", &ps_shadow_quality, shadow_quality_token);
+
+	CMD3(CCC_Token, "r2_bump_mode", &ps_bump_mode, bump_mode_token);
+
+	CMD3(CCC_Mask, "r2_gloss_rgb", &ps_r2_ls_flags, R2FLAG_GLOSS_RGB);
+	CMD3(CCC_Mask, "r2_wet_surfaces", &ps_r2_ls_flags, R2FLAG_WET_SURFACES);
 
 	CMD3(CCC_Token, "r2_debug_frame_layers", &ps_debug_frame_layers, debug_frame_layers_token);
+
+	CMD3(CCC_Mask, "r2_gbuffer_opt", &ps_r2_ls_flags_ext, R2FLAGEXT_GBUFFER_OPT);
 
 	CMD3(CCC_Preset, "_preset", &ps_Preset, qpreset_token);
 

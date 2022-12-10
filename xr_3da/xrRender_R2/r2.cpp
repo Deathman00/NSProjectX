@@ -11,8 +11,7 @@
 #include "../r_constants.h"
 
 CRender	RImplementation;
-
-
+//////////////////////////////////////////////////////////////////////////
 extern u32 ps_aa;
 extern u32 ps_aa_quality;
 extern u32 ps_ao;
@@ -124,7 +123,6 @@ static class cl_pos_decompress_params2 : public R_constant_setup {
 	virtual void setup(R_constant* C)
 	{
 		RCache.set_c(C, (float)Device.dwWidth, (float)Device.dwHeight, 1.0f / (float)Device.dwWidth, 1.0f / (float)Device.dwHeight);
-
 	}
 }	binder_pos_decompress_params2;
 //////////////////////////////////////////////////////////////////////////
@@ -722,6 +720,8 @@ HRESULT	CRender::shader_compile(
 	char c_mblur[32];
 	char c_dof[32];
 
+	char c_gbuffer_opt[32];
+
 	char sh_name[MAX_PATH] = "";
 	size_t len = 0;
 
@@ -1139,6 +1139,20 @@ HRESULT	CRender::shader_compile(
 		len += 1;
 	}
 	sh_name[len] = '0' + char(ps_bump_mode);
+	++len;
+
+	//////////////////////////////////////////////////////////////////////////
+	int gbuffer_opt = ps_r2_ls_flags_ext.test(R2FLAGEXT_GBUFFER_OPT);
+	if (gbuffer_opt)
+	{
+		sprintf(c_gbuffer_opt, "%d", gbuffer_opt);
+		defines[def_it].Name = "GBUFFER_OPTIMIZATION";
+		defines[def_it].Definition = c_gbuffer_opt;
+		def_it++;
+		strcat(sh_name, c_gbuffer_opt);
+		len += 1;
+	}
+	sh_name[len] = '0' + char(gbuffer_opt);
 	++len;
 	//////////////////////////////////////////////////////////////////////////
 

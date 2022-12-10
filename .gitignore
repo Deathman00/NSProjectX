@@ -1,6 +1,6 @@
 
 *.db
-.vs/XR_3DA/v16/.suo
+.vs/*
 *.db-shm
 *.db-wal
 *.opendb

@@ -78,5 +78,13 @@ void	uber_deffer	(CBlender_Compile& C, bool hq, LPCSTR _vspec, LPCSTR _pspec, BO
 		C.r_Sampler		("s_detailBumpX",		dtB,		false,	D3DTADDRESS_WRAP,	D3DTEXF_ANISOTROPIC,D3DTEXF_LINEAR,	D3DTEXF_ANISOTROPIC);
 	}
 	if (lmap)C.r_Sampler("s_hemi",	C.L_textures[2],	false,	D3DTADDRESS_CLAMP,	D3DTEXF_LINEAR,		D3DTEXF_NONE,	D3DTEXF_LINEAR);
+
+#ifdef ADVANCED_BUILD
+	C.r_Sampler("s_spec",		strconcat(sizeof(fname), fname, fname, "_spec"),		false, D3DTADDRESS_WRAP, D3DTEXF_ANISOTROPIC, D3DTEXF_LINEAR, D3DTEXF_ANISOTROPIC); // <- Very big thanks for LVutner (albedo_spec.dds)
+	C.r_Sampler("s_speccolor",	strconcat(sizeof(fname), fname, fname, "_speccolor"),	false, D3DTADDRESS_WRAP, D3DTEXF_ANISOTROPIC, D3DTEXF_LINEAR, D3DTEXF_ANISOTROPIC); // <- Very big thanks for LVutner (albedo_speccolor.dds)
+	C.r_Sampler("s_nmap",		strconcat(sizeof(fname), fname, fname, "_nmap"),		false, D3DTADDRESS_WRAP, D3DTEXF_ANISOTROPIC, D3DTEXF_LINEAR, D3DTEXF_ANISOTROPIC); // <- Very big thanks for LVutner (albedo_nmap.dds)
+	C.r_Sampler("s_detail_nmap",		strconcat(sizeof(dt),	 dt,	dt,		"_nmap"),		false, D3DTADDRESS_WRAP, D3DTEXF_ANISOTROPIC, D3DTEXF_LINEAR, D3DTEXF_ANISOTROPIC);
+#endif
+
 	if (!DO_NOT_FINISH)		C.r_End	();
 }

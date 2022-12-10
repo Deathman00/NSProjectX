@@ -150,7 +150,7 @@ class cl_fog_params : public R_constant_setup {
 			float	n = g_pGamePersistent->Environment().CurrentEnv.fog_near;
 			float	f = g_pGamePersistent->Environment().CurrentEnv.fog_far;
 			float	r = 1 / (f - n);
-			result.set(-n * r, r, r, r);
+			result.set(-n * r, n, f, r);
 		}
 		RCache.set_c(C, result);
 	}

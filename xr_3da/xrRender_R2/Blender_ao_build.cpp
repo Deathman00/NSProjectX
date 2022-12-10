@@ -29,18 +29,22 @@ void CBlender_ao_build::Compile(CBlender_Compile& C)
 		C.r_Sampler_rtf("s_position", r2_RT_P);
 		C.r_Sampler_rtf("s_position_blurred", r2_RT_blurred_position);
 		C.r_Sampler_rtf("s_normal", r2_RT_N);
-		C.r_Sampler_tex("s_blue_noise", "noise\\blue_noise_texture.dds");
+		C.r_Sampler_tex("s_blue_noise", "noise\\blue_noise_texture");
 		jitter(C);
 		C.r_End();
 		break;
 	case 2: //Read previous RT and blur AO
 		C.r_Pass("null", "ao_filter1", FALSE, FALSE, FALSE);
 		C.r_Sampler_rtf("s_ao", r2_RT_ao1);
+		C.r_Sampler_rtf("s_position", r2_RT_P);
+		C.r_Sampler_rtf("s_position_blurred", r2_RT_blurred_position);
 		C.r_End();
 		break;
 	case 3: //Read secondary RT and blur AO
 		C.r_Pass("null", "ao_filter2", FALSE, FALSE, FALSE);
 		C.r_Sampler_rtf("s_ao_blurred", r2_RT_ao2);
+		C.r_Sampler_rtf("s_position", r2_RT_P);
+		C.r_Sampler_rtf("s_position_blurred", r2_RT_blurred_position);
 		C.r_End();
 		break;
 	}
